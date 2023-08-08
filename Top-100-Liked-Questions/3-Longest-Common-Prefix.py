@@ -43,8 +43,17 @@ class Solution(object):
             prefix = s
         return prefix
     
+    def LCP(strs):
+        prefix = ''
+        for i in range(len(strs[0])):
+            for s in strs:
+                if i == len(s) or s[i] != strs[0][i]:
+                    return prefix
+            prefix += s[i]
+        return prefix
+    
 solution = Solution()
 # strs = ["c","acc","ccc"]
 # strs = ["dog","racecar","car"]
 strs = ["flower","flow","flight"]
-print(solution.longestCommonPrefix(strs))
+print(solution.LCP(strs))
