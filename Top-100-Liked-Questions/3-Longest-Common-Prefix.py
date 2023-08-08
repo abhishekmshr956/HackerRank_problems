@@ -43,6 +43,7 @@ class Solution(object):
             prefix = s
         return prefix
     
+    # better implementation
     def LCP(strs):
         prefix = ''
         for i in range(len(strs[0])):
