@@ -58,3 +58,9 @@ class Solution(object):
             else:
                 integer += rtoi[s[i]]
         return integer
+    
+solution = Solution()
+# s = "III"
+# s = "LVIII"
+s = "MCMXCIV"
+print(solution.romanToInt(s))
