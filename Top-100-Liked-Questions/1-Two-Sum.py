@@ -35,15 +35,10 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        prevmap = {} # val : index
-
         for i in range(len(nums)):
-            n = nums[i]
-            diff = target - n
-            if diff in prevmap:
-                return (prevmap[diff], i)
-            else:
-                prevmap[n] = i
+            for j in range(i+1, len(nums)):
+                if nums[i] + nums[j] == target:
+                    return (i,j)
 
     # O(n)
     def twoSum(self, nums, target):
@@ -63,10 +58,11 @@ class Solution(object):
                 prevmap[n] = i
 
 # nums, target = [2, 7, 11, 15], 9
-nums, target = [3, 2, 4], 6
-# nums, target = [3, 3], 6
+# nums, target = [3, 2, 4], 6
+nums, target = [3, 3], 6
 solution = Solution()
 print(solution.twoSum(nums, target))
+print(solution.twoSum_slow(nums, target))
 
     
 
