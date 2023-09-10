@@ -25,6 +25,19 @@ n == nums.length
 
 Follow-up: Could you solve the problem in linear time and in O(1) space?
 """
+def MajorityElement_FollowUp(nums):
+    """ solution with O(1) space complexity"""
+    res, count = 0, 0
+    for n in nums:
+        if count == 0:
+            res = n
+        count += 1 if n == res else -1
+        # if n == res:
+        #     count += 1
+        # else:
+        #     count -= 1
+    return res
+
 
 def MajorityElement(nums):
     """ solution using hash map (dictionary)"""
@@ -32,15 +45,15 @@ def MajorityElement(nums):
     count_map = {}
     for i in nums:
         count_map[i] = count_map.get(i, 0) + 1
-        if count_map[i] > n//2:
-            return i
+        # if count_map[i] > n//2:
+        #     return i
         # if i in count_map:
         #     count_map[i] += 1 
         # else: 
         #     count_map[i] = 1
-    # for key, value in count_map.items():
-    #     if value > n//2:
-    #         return key
+    for key, value in count_map.items():
+        if value > n//2:
+            return key
         
 
 # ### solution using count elements        
@@ -61,4 +74,5 @@ if __name__ == '__main__':
     # nums = [3,2,3]
     nums = [2,2,1,1,1,2,2]
     print(MajorityElement(nums))
+    print(MajorityElement_FollowUp(nums))
     # print(MajorityElement_count(nums))
