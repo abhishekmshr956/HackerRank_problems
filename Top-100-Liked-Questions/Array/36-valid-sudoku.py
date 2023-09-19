@@ -21,42 +21,64 @@ Input: board =
 ,[".",".",".",".","8",".",".","7","9"]]
 Output: true
 """
-def isValidVector(A):
-    count = set()
-    for a in A:
-        if a != '.':
-            i = int(a)
-            if i in count:
+# def isValidVector(A):
+#     count = set()
+#     for a in A:
+#         if a != '.':
+#             i = int(a)
+#             if i in count:
+#                 return False
+#             count.add(i)
+#     return True
+
+# def isValidSudoku(board):
+
+#     # check if all rows are valid
+#     for row in board:
+#         if not isValidVector(row):
+#             return False
+        
+#     # check if all columns are valid
+#     for i in range(len(board)):
+#         column = []
+#         for j in range(len(board)):
+#             column.append(board[j][i])
+#         if not isValidVector(column):
+#             return False
+        
+#     # check if all 3*3 blocks are valid
+#     for o in range(3):
+#         for i in range(3):
+#             miniboard = []
+#             for j in range(3):
+#                 for k in range(3):
+#                     miniboard.append(board[j + 3*o][k+3*i])
+#             if not isValidVector(miniboard):
+#                 return False
+
+#     return True 
+
+####### solution with less lines of code ##########
+import collections
+def isValidSudoku(board):
+    cols = collections.defaultdict(set)
+    rows = collections.defaultdict(set)
+    squares = collections.defaultdict(set) # key = (r // 3, c // 3)
+
+    for r in range(9):
+        for c in range(9):
+            if board[r][c] == '.':
+                continue
+            if (board[r][c] in rows[r] or
+            board[r][c] in cols[c] or
+            board[r][c] in squares[(r // 3, c // 3)]):
                 return False
-            count.add(i)
+            
+            cols[c].add(board[r][c])
+            rows[r].add(board[r][c])
+            squares[(r // 3, c // 3)].add(board[r][c])
     return True
 
-def isValidSudoku(board):
-
-    # check if all rows are valid
-    for row in board:
-        if not isValidVector(row):
-            return False
-        
-    # check if all columns are valid
-    for i in range(len(board)):
-        column = []
-        for j in range(len(board)):
-            column.append(board[j][i])
-        if not isValidVector(column):
-            return False
-        
-    # check if all 3*3 blocks are valid
-    for o in range(3):
-        for i in range(3):
-            miniboard = []
-            for j in range(3):
-                for k in range(3):
-                    miniboard.append(board[j + 3*o][k+3*i])
-            if not isValidVector(miniboard):
-                return False
-
-    return True 
 
 if __name__ == '__main__':
     A = ["5","3",".",".","7","5",".",".","."]
