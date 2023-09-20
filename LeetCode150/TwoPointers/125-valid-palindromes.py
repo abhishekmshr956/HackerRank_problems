@@ -29,25 +29,54 @@ Constraints:
 1 <= s.length <= 2 * 105
 s consists only of printable ASCII characters."""
 
-def isPalindrome(s):
-    
-    s_alphanumeric = ''
-    for c in s.lower():
-        if c in 'abcdefghijklmnopqrstuvwxyz0123456789':
-            s_alphanumeric += c
-    # print(s_alphanumeric)
+def isPalindrome(s: str) -> bool:
+    # # Convert the string to lowercase and filter out non-alphanumeric characters
+    # s = ''.join(filter(str.isalnum, s.lower()))
 
-    n = len(s_alphanumeric)
+    # # Check if the filtered string reads the same forwards and backwards
+    # return s == s[::-1]
+
+
+    # # s = ''.join(filter(str.isalnum, s.lower()))
+    s = ''.join(filter(str.isalnum, s.lower()))
+        
+    # s_alphanumeric = ''
+    # for c in s.lower():
+    #     if c in 'abcdefghijklmnopqrstuvwxyz0123456789':
+    #         s_alphanumeric += c
+    # # print(s_alphanumeric)
+
+    n = len(s)
 
     i = 0
     j = n - 1
-    while i < n//2:
-        if s_alphanumeric[i] != s_alphanumeric[j]:
+    while i < j:
+        if s[i] != s[j]:
             return False
         else:
             i += 1
             j -= 1
     return True
+
+# def isPalindrome(s):
+    
+#     s_alphanumeric = ''
+#     for c in s.lower():
+#         if c in 'abcdefghijklmnopqrstuvwxyz0123456789':
+#             s_alphanumeric += c
+#     # print(s_alphanumeric)
+
+#     n = len(s_alphanumeric)
+
+#     i = 0
+#     j = n - 1
+#     while i < n//2:
+#         if s_alphanumeric[i] != s_alphanumeric[j]:
+#             return False
+#         else:
+#             i += 1
+#             j -= 1
+#     return True
 
 if __name__ == '__main__':
     # s = "A man, a plan, a canal: Panama"
