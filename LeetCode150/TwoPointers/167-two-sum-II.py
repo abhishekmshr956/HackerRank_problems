@@ -27,6 +27,21 @@ Output: [1,2]
 Explanation: The sum of -1 and 0 is -1. Therefore index1 = 1, index2 = 2. We return [1, 2].
 """
 class Solution:
+    def twoSum(self, numbers: list[int], target: int) -> list[int]:
+        low = 0
+        high = len(numbers) - 1
+        
+        while low < high:
+            curr_sum = numbers[low] + numbers[high]
+            if target == curr_sum:
+                return [low + 1, high + 1]
+            elif target < curr_sum:
+                high -= 1
+            elif target > curr_sum:
+                low += 1
+
+# O(nlogn)
+class Solution1:
     def binary_search(self, A: list[int], low: int, high: int, key: int) -> int:
         """ returns the index of the searched element key in A """
 
