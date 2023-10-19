@@ -42,7 +42,7 @@ class Solution:
                 if len(answer) >= k:
                     return answer[:k]
                 
-            return answer
+        return answer
 
 if __name__ == '__main__':
     # nums = [1,1,1,2,2,3]; k = 2 # Output: [1,2]
