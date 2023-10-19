@@ -13,7 +13,7 @@ class Solution1:
 
         answer = []
 
-        for i in range(len(counts) - 1, 0, -1):
+        for i in range(max_freq, 0, -1):
             if counts[i]:
                 answer.extend(counts[i])
                 if len(answer) >= k:
