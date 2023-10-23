@@ -36,6 +36,22 @@ class AbstractBinaryTree(AbstractTree, BinaryTree):
             snapshot.add(self.right(p))
         return snapshot
     
+    def inorderSubtree(self, p, snapshot):
+        if self.left(p) is not None:
+            self.inorderSubtree(self.left(p), snapshot)
+        snapshot.add(p)
+        if self.right(p) is not None:
+            self.inorderSubtree(self.right(p))
+
+    def inorder(self):
+        snapshot = []
+        if not self.isEmpty():
+            self.inorderSubtree(self.root(), snapshot)
+        return snapshot
+
+    def positions(self):
+        return self.inorder() 
+    
 class LinkedBinaryTree(AbstractBinaryTree):
     class Node:
         def __init__(self, element, parent = None, left = None, right = None):
@@ -131,12 +147,6 @@ class LinkedBinaryTree(AbstractBinaryTree):
         temp = node.getElement()
         node.setElement(e)
         return temp
-    
-    def __iter__(self):
-        pass
-
-    def positions(self):
-        pass
 
     def attach(self, p, t1, t2):
         node = self.validate(p)
@@ -177,13 +187,15 @@ class LinkedBinaryTree(AbstractBinaryTree):
         node.setRight(None)
         node.setParent(node)
         return temp
+    
+    
+
+
 
 
     
 
-tree = LinkedBinaryTree()
-print(tree.size)
-print(tree.root)
+
     
     
         
