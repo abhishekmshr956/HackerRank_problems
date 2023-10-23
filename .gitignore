@@ -1,2 +1,5 @@
 .DS_Store
 DSA/BinaryTrees/__pycache__/treeADT.cpython-311.pyc
+DSA/BinaryTrees/__pycache__/binarytreeADT.cpython-311.pyc
+DSA/BinaryTrees/__pycache__/generaltreeADT.cpython-311.pyc
+DSA/BinaryTrees/__pycache__/*.pyc
