@@ -5,9 +5,15 @@ K = TypeVar('K')
 V = TypeVar('V')
 
 class HeapPriorityQueue(AbstractPriorityQueue[K, V]):
-    def __init__(self, comp: Optional[Comparator[K]] = None):
+    def __init__(self, comp: Optional[Comparator[K]] = None, keys: List[K] = None, values: List[V] = None):
         super().__init__(comp)
         self.heap = []
+
+        if keys is not None and values is not None:
+            for j in range(min(len(keys), len(values))):
+                self.heap.append(PQEntry(keys[j], values[j]))
+
+        self.heapify()
 
     def parent(self, j: int) -> int:
         return (j-1) // 2
@@ -48,6 +54,11 @@ class HeapPriorityQueue(AbstractPriorityQueue[K, V]):
             self.swap(j, smallChildIndex)
             j = smallChildIndex
 
+    def heapify(self):
+        start_index = self.parent(self.size() - 1)
+        for j in range(start_index, -1, -1):
+            self.downheap(j)
+
     def size(self):
         return len(self.heap) 
     
@@ -73,3 +84,14 @@ class HeapPriorityQueue(AbstractPriorityQueue[K, V]):
         self.heap.pop()
         self.downheap(0)
         return answer
+    
+    def PQSort(S, P):
+        n = S.size()
+
+        for j in range(n):
+            element = S.remove(S.first())
+            P.insert(element, None)
+
+        for j in range(n):
+            element = P.remove_min().getKey()
+            S.add_last(element)
